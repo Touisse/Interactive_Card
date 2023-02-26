@@ -1,6 +1,14 @@
 # Frontend Mentor - Interactive card details form
 
-![Design preview for the Interactive card details form coding challenge](/INTERACTIVE_CARD/design/desktop-preview.jpg)
+
+![desktop-design](https://user-images.githubusercontent.com/63207127/221430121-31a0450c-c35d-4702-b94a-6cb4c00edbde.jpg)
+![desktop-preview](https://user-images.githubusercontent.com/63207127/221430122-8d53f7f9-8526-4770-95a3-f611de5bbb1f.jpg)
+![complete-state-desktop](https://user-images.githubusercontent.com/63207127/221430119-6adfb0e0-b390-432d-beee-bc97f0a18142.jpg)
+
+![mobile-design](https://user-images.githubusercontent.com/63207127/221430158-74f8e112-5af2-4c36-887d-5a266ab06e76.jpg)
+![complete-state-mobile](https://user-images.githubusercontent.com/63207127/221430162-44e6b3a0-d9c2-4e9b-b0cf-f0137425bbd5.jpg)
+
+
 
 ## Welcome! 👋
 
