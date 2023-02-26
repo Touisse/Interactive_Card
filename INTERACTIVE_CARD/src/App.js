@@ -7,14 +7,14 @@ function App() {
   return (
     <>
       <section>
-        <div className="absolute -z-10">
+        <div className="absolute -z-10 w-full">
           <picture>
-            <source media="(min-width : 1024px" srcSet={bgDesktop} />
-            <img src={bgMobile} alt="" />
+            <source media="(min-width : 768px" srcSet={bgDesktop} />
+            <img src={bgMobile} alt="" className="w-full md:w-1/3" />
           </picture>
         </div>
-        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-          <div className="mt-10 mx-5 lg:grid lg:grid-cols-1 lg:gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 max-w-7xl mx-auto">
+          <div className="mt-10 mx-5 grid grid-cols-1">
             <article className="front-card p-5 flex flex-col justify-between">
               <img src={logo} alt="" className="w-20 lg:w-28" />
               <div>
@@ -25,7 +25,9 @@ function App() {
                   <li className="text-white uppercase text-base lg:text-xl tracking-widest ">
                     Yassine Touisse
                   </li>
-                  <li className="text-white text-xl text-base lg:text-xl tracking-widest ">00/00</li>
+                  <li className="text-white text-xl text-base lg:text-xl tracking-widest ">
+                    00/00
+                  </li>
                 </ul>
               </div>
             </article>
@@ -35,7 +37,57 @@ function App() {
               </p>
             </article>
           </div>
-          <div>form</div>
+          <div>
+            <form className="flex flex-col justify-center gap-8 max-w-lg lg:h-screen">
+              <div>
+                <label htmlFor="cardholder_name">Cardholder Name</label>
+                <input
+                  type="text"
+                  name="cardholder_name"
+                  id="cardholder_name"
+                  placeholder="e.g Yassine Touisse"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="card_number">Card Number</label>
+                <input
+                  type="text"
+                  name="card_number"
+                  id="card_number"
+                  placeholder="e.g 1213 4343 3435 6567"
+                  maxLength={19}
+                  required
+                />
+              </div>
+              <article className="flex items-center justify-between gap-8">
+                <div className="flex-1">
+                  <label htmlFor="expiry_date">Exp. Date (MM/YY) </label>
+                  <input
+                    type="month"
+                    name="expiry_date"
+                    id="expiry_date"
+                    placeholder="MM YY"
+                    required
+                  />
+                </div>
+                <div className="flex-1">
+                  <label htmlFor="cvc">CVC</label>
+                  <input
+                    type="number"
+                    name="cvc"
+                    id="cvc"
+                    placeholder="e.g 123"
+                    maxLength={3}
+                    required
+                  />
+                </div>
+              </article>
+              <button type="submit" className="btn">
+                Confirm
+              </button>
+            </form>
+          </div>
         </div>
       </section>
     </>
