@@ -1,13 +1,37 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&family=Space+Grotesk:wght@500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+  font-family: 'Space Grotesk', sans-serif;
+}
+.front-card{
+  background: url("./Assets/bg-card-front.png") no-repeat center/cover ;
+  height: 200px;
+  width: 320px;
+  border-radius: 10px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.back-card{
+  background: url("./Assets/bg-card-back.png") no-repeat center/cover ;
+  height: 200px;
+  width: 320px;
+  border-radius: 10px;
+}
+
+.back-card p{
+   top: 5.2rem;
+}
+
+@media (min-width : 1024px ){
+  .front-card , .back-card{
+    height: 300px;
+    width: 500px;
+    border-radius: 20px;
+}
+.back-card p{
+  top: 8.3rem;
+}
 }
