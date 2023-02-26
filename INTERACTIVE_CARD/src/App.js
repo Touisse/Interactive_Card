@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import bgMobile from "./Assets/bg-main-mobile.png";
 import bgDesktop from "./Assets/bg-main-desktop.png";
 import logo from "./Assets/card-logo.svg";
+import Thankyou from "./Components/Thankyou";
+import { format } from "date-fns";
 
 function App() {
+  const [confirmed, setConfirmed] = useState(false);
+  const [name, setName] = useState("");
+  const [cardNumber, setCardNumber] = useState("");
+  const [date, setDate] = useState("01/23");
+  const [cvc, setCvc] = useState();
+
   return (
     <>
       <section>
@@ -19,74 +27,92 @@ function App() {
               <img src={logo} alt="" className="w-20 lg:w-28" />
               <div>
                 <h2 className="text-white lg:text-3xl text-xl lg: mb-6 tracking-widest">
-                  1234 5654 5653 5334
+                  {cardNumber}
                 </h2>
                 <ul className="flex items-center justify-between">
                   <li className="text-white uppercase text-base lg:text-xl tracking-widest ">
-                    Yassine Touisse
+                    {name}
                   </li>
-                  <li className="text-white text-xl text-base lg:text-xl tracking-widest ">
-                    00/00
+                  <li className="text-white text-base lg:text-xl tracking-widest ">
+                    {format(new Date(date), "MM/yy")}
                   </li>
                 </ul>
               </div>
             </article>
             <article className="back-card relative lg:ml-20">
               <p className="absolute right-10 top-32 text-lg lg:text-xl text-white tracking-widest">
-                123
+                {cvc}
               </p>
             </article>
           </div>
-          <div>
-            <form className="flex flex-col justify-center gap-8 max-w-lg lg:h-screen">
-              <div>
-                <label htmlFor="cardholder_name">Cardholder Name</label>
-                <input
-                  type="text"
-                  name="cardholder_name"
-                  id="cardholder_name"
-                  placeholder="e.g Yassine Touisse"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="card_number">Card Number</label>
-                <input
-                  type="text"
-                  name="card_number"
-                  id="card_number"
-                  placeholder="e.g 1213 4343 3435 6567"
-                  maxLength={19}
-                  required
-                />
-              </div>
-              <article className="flex items-center justify-between gap-8">
-                <div className="flex-1">
-                  <label htmlFor="expiry_date">Exp. Date (MM/YY) </label>
+          <div className="pt-8 px-5 pb-20">
+            {!confirmed && (
+              <form className="flex flex-col justify-center gap-8 max-w-lg lg:h-screen">
+                <div>
+                  <label htmlFor="cardholder_name">Cardholder Name</label>
                   <input
-                    type="month"
-                    name="expiry_date"
-                    id="expiry_date"
-                    placeholder="MM YY"
+                    type="text"
+                    name="cardholder_name"
+                    id="cardholder_name"
+                    placeholder="e.g. Yassine Touisse"
                     required
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                   />
                 </div>
-                <div className="flex-1">
-                  <label htmlFor="cvc">CVC</label>
+
+                <div>
+                  <label htmlFor="card_number">Card Number</label>
                   <input
-                    type="number"
-                    name="cvc"
-                    id="cvc"
-                    placeholder="e.g 123"
-                    maxLength={3}
+                    type="text"
+                    name="card_number"
+                    id="card_number"
+                    placeholder="e.g. 1234 5678 9012 3456"
                     required
+                    maxLength={19}
+                    value={cardNumber
+                      .replace(/\s/g, "")
+                      .replace(/(\d{4})/g, "$1 ")
+                      .trim()}
+                    onChange={(e) => setCardNumber(e.target.value)}
                   />
                 </div>
-              </article>
-              <button type="submit" className="btn">
-                Confirm
-              </button>
-            </form>
+
+                <article className="flex items-center justify-between gap-8">
+                  <div className="flex-1">
+                    <label htmlFor="expiry_date">Exp. Date (MM/YY)</label>
+                    <input
+                      type="month"
+                      name="expiry_date"
+                      id="expiry_date"
+                      placeholder="MM YY"
+                      required
+                      value={date}
+                      onChange={(e) => setDate(e.target.value)}
+                    />
+                  </div>
+
+                  <div className="flex-1">
+                    <label htmlFor="cvc">CVC</label>
+                    <input
+                      type="number"
+                      name="cvc"
+                      id="cvc"
+                      placeholder="e.g. 123"
+                      maxLength={3}
+                      required
+                      value={cvc}
+                      onChange={(e) => setCvc(e.target.value)}
+                    />
+                  </div>
+                </article>
+
+                <button onClick={() => setConfirmed(true)} className="btn">
+                  Confirm
+                </button>
+              </form>
+            )}
+            {confirmed && <Thankyou setConfirmed={setConfirmed} />}
           </div>
         </div>
       </section>
